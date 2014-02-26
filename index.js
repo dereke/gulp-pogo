@@ -1,25 +1,26 @@
 var es = require('event-stream');
-var coffee = require('coffee-script');
+var pogo = require('pogo');
 var gutil = require('gulp-util');
 var Buffer = require('buffer').Buffer;
 var path = require('path');
 
 module.exports = function (opt) {
+  var pogoExtensionRegex = /\.pogo$/;
   function modifyFile(file) {
-    if (file.isNull()) return this.emit('data', file); // pass along
-    if (file.isStream()) return this.emit('error', new Error("gulp-coffee: Streaming not supported"));
+    function isPogoFile(){ return !!pogoExtensionRegex.exec(file.path);}
+
+    if (file.isNull() || !isPogoFile()) return this.emit('data', file); // pass along
+    if (file.isStream()) return this.emit('error', new Error("gulp-pogo: Streaming not supported"));
 
     var str = file.contents.toString('utf8');
     var dest = gutil.replaceExtension(file.path, ".js");
 
     var options = {
-      literate: /\.(litcoffee|coffee\.md)$/.test(file.path)
     };
 
     if (opt) {
       options = {
         bare: opt.bare != null ? !! opt.bare : false,
-        literate: opt.literate != null ? !! opt.literate : options.literate,
         sourceMap: opt.sourceMap != null ? !! opt.sourceMap : false,
         filename: file.path,
         sourceFiles: [path.basename(file.path)],
@@ -28,7 +29,7 @@ module.exports = function (opt) {
     }
 
     try {
-      data = coffee.compile(str, options);
+      data = pogo.compile(str, options);
     } catch (err) {
       return this.emit('error', new Error(err));
     }

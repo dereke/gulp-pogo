@@ -1,14 +1,14 @@
-![status](https://secure.travis-ci.org/wearefractal/gulp-coffee.png?branch=master)
+Based off the excellent work from https://github.com/wearefractal/gulp-coffee
 
 ## Information
 
 <table>
 <tr> 
-<td>Package</td><td>gulp-coffee</td>
+<td>Package</td><td>gulp-pogo</td>
 </tr>
 <tr>
 <td>Description</td>
-<td>Compiles CoffeeScript</td>
+<td>Compiles PogoScript</td>
 </tr>
 <tr>
 <td>Node Version</td>
@@ -19,50 +19,20 @@
 ## Usage
 
 ```javascript
-var coffee = require('gulp-coffee');
+var coffee = require('gulp-pogo');
 
 gulp.task('coffee', function() {
-  gulp.src('./src/*.coffee')
-    .pipe(coffee({bare: true}).on('error', gutil.log))
+  gulp.src('./src/*.pogo')
+    .pipe(pogo())
     .pipe(gulp.dest('./public/'))
 });
 ```
 
 ### Error handling
 
-gulp-coffee will emit an error for cases such as invalid coffeescript syntax. If uncaught, the error will crash gulp.
+gulp-pogo will emit an error for cases such as invalid PogoScript syntax. If uncaught, the error will crash gulp.
 
 You will need to attach a listener (i.e. `.on('error')`) for the error event emitted by gulp-coffee:
-
-```javascript
-var coffeeStream = coffee({bare: true});
-
-// Attach listener
-coffeeStream.on('error', function(err) {});
-```
-
-In addition, you may utilize [gulp-util](https://github.com/wearefractal/gulp-util)'s logging function:
-
-```javascript
-var gutil = require('gulp-util');
-
-// ...
-
-var coffeeStream = coffee({bare: true});
-
-// Attach listener
-coffeeStream.on('error', gutil.log);
-
-```
-
-Since `.on(...)` returns `this`, you can make you can compact it as inline code:
-
-```javascript
-
-gulp.src('./src/*.coffee')
-  .pipe(coffee({bare: true}).on('error', gutil.log))
-  // ...
-```
 
 ## Options
 
@@ -71,8 +41,6 @@ The options object supports the same options as the standard CoffeeScript compil
 ## LICENSE
 
 (MIT License)
-
-Copyright (c) 2013 Fractal <contact@wearefractal.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
