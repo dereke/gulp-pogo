@@ -1,7 +1,7 @@
 {
   "name": "gulp-pogo",
   "description": "Compile PogoScript files",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "homepage": "http://github.com/dereke/gulp-pogo",
   "repository": "git://github.com/dereke/gulp-pogo.git",
   "author": "Derek Ekins",
@@ -12,8 +12,10 @@
   ],
   "dependencies": {
     "event-stream": "~3.0.20",
-    "pogo": "~0.6.5",
     "gulp-util": "~2.2.1"
+  },
+  "peerDependencies": {
+    "pogo": "*"
   },
   "devDependencies": {
     "mocha": "*",
