@@ -1,7 +1,7 @@
 {
   "name": "gulp-pogo",
   "description": "Compile PogoScript files",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "homepage": "http://github.com/dereke/gulp-pogo",
   "repository": "git://github.com/dereke/gulp-pogo.git",
   "author": "Derek Ekins",

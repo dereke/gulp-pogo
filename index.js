@@ -31,7 +31,9 @@ module.exports = function (opt) {
     try {
       data = pogo.compile(str, options);
     } catch (err) {
-      return this.emit('error', new Error(err));
+      var message = "Error compiling pogo file: " + file.path;
+      message += ' \n' + err
+      return this.emit('error', new Error(message));
     }
 
     if (options.sourceMap) {
