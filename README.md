@@ -19,9 +19,9 @@ Based off the excellent work from https://github.com/wearefractal/gulp-coffee
 ## Usage
 
 ```javascript
-var coffee = require('gulp-pogo');
+var pogo = require('gulp-pogo');
 
-gulp.task('coffee', function() {
+gulp.task('pogo', function() {
   gulp.src('./src/*.pogo')
     .pipe(pogo())
     .pipe(gulp.dest('./public/'))
@@ -32,11 +32,11 @@ gulp.task('coffee', function() {
 
 gulp-pogo will emit an error for cases such as invalid PogoScript syntax. If uncaught, the error will crash gulp.
 
-You will need to attach a listener (i.e. `.on('error')`) for the error event emitted by gulp-coffee:
+You will need to attach a listener (i.e. `.on('error')`) for the error event emitted by gulp-pogo:
 
 ## Options
 
-The options object supports the same options as the standard CoffeeScript compiler 
+The options object supports the same options as the standard PogoScript compiler
 
 ## LICENSE
 
